@@ -3,18 +3,21 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-<t:pagetemplate>
+<t:fourthingsplus>
     <jsp:attribute name="header">
          Welcome to the logged in area
     </jsp:attribute>
 
-    <jsp:attribute name="footer">
-        Logged in area
-    </jsp:attribute>
-
     <jsp:body>
 
-        <p>You should be logged in now</p>
+        <p>You should be logged in now</p><br>
+
+        <h3>Item list:</h3>
+        <ul>
+            <c:forEach var="item" items="${requestScope.itemList}">
+                <li>${item.name} (${item.created}) Done: ${item.done})</li>
+            </c:forEach>
+        </ul>
 
         <c:if test="${sessionScope.user != null}">
             <p>You are logged in with the role of "${sessionScope.user.role}".</p>
@@ -27,4 +30,4 @@
 
     </jsp:body>
 
-</t:pagetemplate>
+</t:fourthingsplus>
